@@ -1,9 +1,10 @@
 package Structure.FileSystemStructure;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Segment {
-    public static final int segmentSize = 1024;
+public class Segment implements Serializable {
+    public static final int segmentSize = 1024;         // Размер сегмента (в байтах) по ТЗ
     public static final int segmentsLimit = 31;         // Ограничение на максимальное число сегментов в ФС
     public static final int dataInfoCountLimit = 5;     // Максимальное число записей о файла в сегменте
     public static int counter;                          // Счетчик занятых сегментов
@@ -22,6 +23,17 @@ public class Segment {
     }
 
     public boolean isEmptySegment() {
-        return info.isEmpty();
+        return this.info.isEmpty();
+    }
+    @Override
+    public String  toString () {
+        return "segmentSize:"+ segmentSize+
+                "\nsegmentsLimit:"+segmentsLimit+
+                "\ndataInfoCountLimit:"+dataInfoCountLimit+
+                "\ncounter:"+counter+
+                "\ncurrentSegment:"+currentSegment+
+                "\nhead:"+head+
+                "\ninfo:"+info.toString()+
+                "\ncapacity:"+capacity;
     }
 }
